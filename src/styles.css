@@ -1,0 +1,359 @@
+:root {
+  --primary-color: #007BFF;
+  --secondary-color: #6C757D;
+  --success-color: #28A745;
+  --danger-color: #DC3545;
+  --warning-color: #FFC107;
+  --info-color: #17A2B8;
+  --light-color: #F8F9FA;
+  --dark-color: #343A40;
+  --font-size: 2.5em;
+  --font-size-small: 1.25em;
+  --border-radius: 8px;
+  --padding: 25px;
+  --container-padding: 25px; /* Added for consistent padding */
+}
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: var(--light-color);
+  overflow: auto;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: calc(100% - 50px); /* Subtracting padding to maintain space on sides */
+  max-width: 800px;
+  padding: var(--container-padding);
+  background-color: white;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+  border-radius: var(--border-radius);
+  transition: transform 0.3s ease;
+  margin: 100px;
+}
+
+#fullScreenContainer {
+  width: calc(95% - 50px); /* Subtracting padding to maintain space on sides */
+  height: calc(95% - 50px); /* Subtracting padding to maintain space on sides */
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--container-padding);
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+  border-radius: var(--border-radius);
+}
+
+.exit-fullscreen {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: var(--danger-color);
+  color: white;
+  border: none;
+  border-radius: var(--border-radius);
+  padding: 10px;
+  cursor: pointer;
+  font-size: 1.5em;
+}
+
+.tab-row {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  margin-bottom: 20px;
+  background-color: var(--dark-color);
+  border-radius: var(--border-radius);
+  overflow: hidden;
+  padding: 0 15px;
+}
+
+.tab-row button {
+  flex: 1;
+  padding: 10px 20px;
+  font-size: 1em;
+  background-color: var(--dark-color);
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.tab-row button.active {
+  background-color: var(--primary-color);
+}
+
+.tab-row button:not(.active):hover {
+  background-color: var(--secondary-color);
+}
+
+.input-row, .button-row {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin: 10px 0;
+  flex-wrap: wrap;
+}
+
+.half-width {
+  width: 48%;
+  min-width: 120px;
+}
+
+.take-input-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: 10px;
+  max-width: 320px;
+}
+
+.take-input-container label {
+  margin-right: 10px;
+}
+
+.take-input-container button,
+.tab-row button,
+#syncButton,
+#muteButton,
+#rotateButton,
+#exportButton,
+#clearButton {
+  height: 40px;
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  margin: 0 5px;
+  flex-shrink: 0;
+  padding: 10px 20px;
+  transition: background-color 0.3s ease;
+}
+
+.take-input-container button:hover,
+.tab-row button:hover,
+#syncButton:hover,
+#muteButton:hover,
+#rotateButton:hover,
+#exportButton:hover,
+#clearButton:hover {
+  background-color: var(--secondary-color);
+}
+
+.take-input-container button:active,
+.tab-row button:active,
+#syncButton:active,
+#muteButton:active,
+#rotateButton:active,
+#exportButton:active,
+#clearButton:active {
+  background-color: var(--success-color);
+}
+
+.take-input-container input,
+#logTable td input {
+  text-align: center;
+  height: 40px;
+  width: 80px;
+  border: 1px solid var(--secondary-color);
+  border-radius: var(--border-radius);
+  margin: 0 5px;
+  flex-grow: 1;
+  max-width: 120px;
+}
+
+#timecodeContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 20px 0;
+}
+
+#timecode {
+  font-size: var(--font-size);
+  background-color: #ffffff;
+  padding: var(--padding);
+  border: 2px solid #000000;
+  border-radius: var(--border-radius);
+  text-align: center;
+  margin-bottom: var(--padding);
+  transition: background-color 0.3s ease;
+}
+
+#infoDisplay {
+  display: table;
+  width: 100%;
+  max-width: 320px;
+  margin-top: 10px;
+}
+
+#infoDisplay th, #infoDisplay td {
+  text-align: center;
+  padding: 5px;
+  border: 1px solid var(--secondary-color);
+}
+
+.label-row {
+  margin-top: 10px;
+  text-align: center;
+  font-size: var(--font-size-small);
+  color: var(--secondary-color);
+}
+
+.divider {
+  width: 100%;
+  border: none;
+  border-top: 1px solid var(--secondary-color);
+  margin: 20px 0;
+}
+
+.explainer-section {
+  text-align: left;
+  width: 100%;
+  max-width: 800px;
+  background-color: var(--light-color);
+  padding: var(--padding);
+  border-radius: var(--border-radius);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  margin-top: 20px;
+}
+
+.explainer-section h3 {
+  margin-top: 0;
+  color: var(--dark-color);
+}
+
+.explainer-section p,
+.explainer-section ul {
+  margin: 10px 0;
+  line-height: 1.5;
+  color: var(--secondary-color);
+}
+
+footer {
+  margin-top: 20px;
+  text-align: center;
+  font-size: var(--font-size-small);
+  color: var(--secondary-color);
+}
+
+footer a {
+  color: var(--primary-color);
+  text-decoration: none;
+}
+
+footer a:hover {
+  text-decoration: underline;
+}
+
+#logTable {
+  width: 100%;
+  max-width: 800px;
+  margin-top: 20px;
+  border-collapse: collapse;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  background-color: var(--light-color);
+}
+
+#logTable th, #logTable td {
+  padding: 10px;
+  text-align: left;
+  border: 1px solid var(--secondary-color);
+}
+
+#logTable th {
+  background-color: var(--dark-color);
+  color: white;
+}
+
+#logTable td {
+  background-color: white;
+}
+
+#logTable td input {
+  width: 100%;
+  padding: 5px;
+  box-sizing: border-box;
+  border: 1px solid var(--secondary-color);
+  border-radius: var(--border-radius);
+}
+
+#logTable td button {
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: var(--border-radius);
+  padding: 5px 10px;
+  cursor: pointer;
+  margin-right: 5px;
+}
+
+#logTable td button:hover {
+  background-color: var(--secondary-color);
+}
+
+#logTable td button.delete {
+  background-color: var(--danger-color);
+}
+
+#logTable td button.delete:hover {
+  background-color: var(--secondary-color);
+}
+
+#frameRate,
+#sizeSelector {
+  width: 100%;
+  height: 40px;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid var(--secondary-color);
+  border-radius: var(--border-radius);
+  background-color: white;
+  font-size: 1em;
+  color: var(--dark-color);
+}
+
+@media (max-width: 600px) {
+  .take-input-container {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .input-row {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  #infoDisplay {
+    display: table;
+  }
+
+  #logTable {
+    font-size: var(--font-size-small);
+  }
+
+  #logTable th, #logTable td {
+    padding: 8px;
+  }
+
+  #logTable td button {
+    padding: 5px;
+  }
+}
